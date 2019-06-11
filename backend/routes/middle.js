@@ -10,58 +10,6 @@ const CultureExpression = require('../models/culture-expressionModel');
 module.exports = (router) => {
 
 
-    /* ========
-    Register ROUTE
-    ======== */
-    router.post('/addExpression/:culture', (req, res) => {
-
-        if ((req.body.name || req.body.descripcion || req.body.link || req.body.categorie || req.param.idCulture) === '') {
-            res.json({ success: false, message: "todos los datos deben estar completos" });
-            console.log("no estan completos"); // Return error
-        }
-        else {
-
-            var expression = new Expression();
-            var ce = new CultureExpression();
-            req.param.id
-            expression.name = req.body.name;
-            expression.descripcion = req.body.descripcion;
-            expression.link = req.body.link;
-            expression.categorie = req.body.categorie;
-
-            expression.save(function (err, result) {
-                if (err) {
-                    res.json({ success: false, message: err }); // Return error
-                    console.log("error registrando");
-                }
-                else {
-    
-                    ce.expressions = result._id;
-                    ce.cultures = req.params.culture;
-                    ce.save(function (error) {
-                        if (error) {
-                            res.json({ success: false, message: error }); // Return error
-                            console.log(" Error registrando tabla intermedia");
-                        }
-                        else {
-                            res.json({ success: true, message: "Registrado Exitosamente" }); // Return success and token to frontend
-                            console.log(" registrando en tabla intermedia");
-                        }
-
-                    
-
-                    });
-                 
-
-
-
-                }
-            });
-        }
-
-
-    });
-
 
 
     /* ========
@@ -141,38 +89,32 @@ module.exports = (router) => {
         });
     });
 
-    /*
-    router.get('/finesExpression',(request, response) => {
-       var expression = new Expression();
-     //   var culture = new Culture();
-   
-        Expression.find({ function (err, expression) {
+    router.get('/fineCultureExpression', function (req, res) {
+        CultureExpression.find(). 
+         populate({ path: "cultures" } ).
+         populate({ path: "expressions" })
+         .exec(function (err, ce) {
+            res.status(200).send(ce);
+        }); 
+        });
 
-            if (err) {
-                // res.status(422);
-                // res.json({success: false, message: 'no encontrado' } );
-                res.json({ success: false, message: err }); // Return error
-                console.log("error");
+        router.get('/finesOneCE/:expressions/:cultures', function (req, res) {
+            
+            if ((req.params.expressions) == null & (req.params.cultures) == null) {
+                //   res.status(422);
+                res.json({ success: false, message: 'vasio' });
+                console.log("los parametros estaan vacios");
             }
-
-            //res.json({ success: true, message: 'Success!'});
-            response.json({ success: true, expression }); // Return success and token to frontend
-            console.log(expression);
-
-        });
-
-    });
-*/
-    router.get('/finesExpression', function (req, res) {
-
-
-        Expression.find({}, function (err, expression) {
-            Culture.populate(expression, { path: "cultures" }, function (err, expression) {
-                res.status(200).send(expression);
+            CultureExpression.findOne({expressions: req.params.expressions.toLowerCase(), cultures: req.params.cultures.toLowerCase()}). 
+             populate({ path: "cultures" } ).
+             populate({ path: "expressions" })
+             .exec(function (err, ce) {
+                res.status(200).send(ce);
+            }); 
+            
             });
-        });
-    });
 
+/*
     router.get('/finesOneExpression/:id/:cultures', function (req, res) {
 
         if ((req.params.id) == null) {
@@ -185,7 +127,7 @@ module.exports = (router) => {
             });
         });
     });
-
+*/
 
     return router;
 

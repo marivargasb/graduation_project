@@ -13,6 +13,8 @@ const users = require('./routes/users');
 const Manager = require('./routes/manager')(router);
 const Culture = require('./routes/culture')(router);
 const Expression = require('./routes/expression')(router);
+const Middle = require('./routes/middle')(router);
+
 
 // Database Connection
 mongoose.connect(config.uri,{ useNewUrlParser: true } ,(err) => {
@@ -33,7 +35,7 @@ mongoose.connect(config.uri,{ useNewUrlParser: true } ,(err) => {
  app.use('/manager', Manager); 
  app.use('/culture', Culture);
  app.use('/expression', Expression);
-
+ app.use('/middle', Middle);
 
 
 

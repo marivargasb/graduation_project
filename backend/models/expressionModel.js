@@ -8,7 +8,7 @@ const expression = new Schema({
    name : { type: String , required:true },
    descripcion: { type: String , required:true },
    link: { type: String , required:true },
-   cultures: { type: Schema.ObjectId, ref: "cultures" } 
+   categorie: { type: String , required:true }
 
 });
 
