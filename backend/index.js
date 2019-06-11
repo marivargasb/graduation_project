@@ -11,6 +11,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const users = require('./routes/users');
 const Manager = require('./routes/manager')(router);
+const Culture = require('./routes/culture')(router);
+const Expression = require('./routes/expression')(router);
 
 // Database Connection
 mongoose.connect(config.uri,{ useNewUrlParser: true } ,(err) => {
@@ -28,8 +30,10 @@ mongoose.connect(config.uri,{ useNewUrlParser: true } ,(err) => {
  app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
  app.use(bodyParser.json()); // parse application/json
 //app.use(express.static(__dirname + '/../frontend/')); // Provide static directory for frontend
- //app.use('/authentication', authentication);
- app.use('/manager', Manager);
+ app.use('/manager', Manager); 
+ app.use('/culture', Culture);
+ app.use('/expression', Expression);
+
 
 
 

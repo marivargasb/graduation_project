@@ -1,8 +1,8 @@
-const Manager = require('../models/managerModel'); // Import User Model Schema
-const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
+const Culture = require('../models/cultureModel'); // Import User Model Schema/const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
 const config = require('../config/database'); // Import database configuration
 //const hbs = require('nodemailer-express-handlebars');
 //const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 
 module.exports = (router) => {
@@ -11,29 +11,27 @@ module.exports = (router) => {
     /* ========
     Register ROUTE
     ======== */
-    router.post('/add', (req, res) => {
+    router.post('/addCulture', (req, res) => {
 
-        if ((req.body.email || req.body.password || req.body.name || req.body.surnames) === '') {
+        if ((req.body.name || req.body.descripcion || req.body.territory) === '') {
             res.json({ success: false, message: "todos los datos deben estar completos" });
             console.log("no estan completos"); // Return error
         }
         else {
 
-            var manager = new Manager();
+            var culture = new Culture();
             req.param.id
-            manager.email = req.body.email;
-            manager.password = req.body.password;
-            manager.name = req.body.name;
-            manager.surnames = req.body.surnames;
-            manager.state = req.body.state;
+            culture.name = req.body.name;
+            culture.descripcion = req.body.descripcion;
+            culture.territory = req.body.territory;
             console.log(req.body);
-            manager.save(function (err) {
+            culture.save(function (err) {
                 if (err) {
                     res.json({ success: false, message: err }); // Return error
                     console.log("error registrando");
                 }
                 else {
-                    console.log("ADD NEW manager");
+                    console.log("ADD NEW culture");
                     res.json({ success: true, message: "Registrado Exitosamente" }); // Return success and token to frontend
                 }
             });
@@ -46,24 +44,21 @@ module.exports = (router) => {
   edit ROUTE
   ======== */
 
-    router.put('/edit/:id', (req, res) => {
-        var manager = new Manager();
+    router.put('/editCulture/:id', (req, res) => {
+        var culture = new Culture();
 
         if ((req.params.id) == null) {
             //   res.status(422);
             res.json({ success: false, message: 'vacio' });
         }
-
         var ma = {
 
             name: req.body.name,
-            surnames: req.body.surnames,
-            email: req.body.email,
-            password: req.body.password
-
+            descripcion: req.body.descripcion,
+            territory: req.body.territory,
 
         };
-        Manager.findByIdAndUpdate(req.params.id, { $set: ma }, { new: true }, (err, manager) => {
+        Culture.findByIdAndUpdate(req.params.id, { $set: ma }, { new: true }, (err, culture) => {
 
             if (err) {
                 res.json({ success: false, message: err }); // Return error
@@ -71,22 +66,22 @@ module.exports = (router) => {
             }
             else {
 
-                res.json({ success: true, manager }); // Return success and token to frontend
-                console.log("managerssss" + manager);
+                res.json({ success: true, culture }); // Return success and token to frontend
+                console.log("culturessss" + culture);
             }
 
 
         });
     });
 
-    router.get('/fine/:id', (req, res) => {
-        var manager = new Manager();
+    router.get('/fineCulture/:id', (req, res) => {
+        var culture = new Culture();
         if ((req.params.id) == null) {
             //   res.status(422);
             res.json({ success: false, message: 'empy' });
         }
 
-        Manager.findOne({ _id: req.params.id.toLowerCase() }, (err, manager) => {
+        Culture.findOne({ _id: req.params.id.toLowerCase() }, (err, culture) => {
 
             if (err) {
                 // res.status(422);
@@ -96,23 +91,23 @@ module.exports = (router) => {
             }
 
             //res.json({ success: true, message: 'Success!'});
-            res.json({ success: true, manager }); // Return success and token to frontend
-            console.log(manager);
+            res.json({ success: true, culture }); // Return success and token to frontend
+            console.log(culture);
 
         })
 
     });
 
-    router.delete('/delete/:id', (req, res) => {
+    router.delete('/deleteCulture/:id', (req, res) => {
 
-        var manager = new Manager();
+        var culture = new Culture();
          console.log("eliminando");
-        Manager.findByIdAndRemove(req.params.id, (err, manager) => {
+        Culture.findByIdAndRemove(req.params.id, (err, culture) => {
           if (err) {  res.json({ success: false, message: err }); // Return error
           console.log("error al eliminar su cuenta");
          }
       else { 
-           console.log("DELETE MANAGER");  
+           console.log("DELETE CULTURE");  
             res.json({ success: true }); // Return success and token to frontend
           
            }
@@ -120,7 +115,7 @@ module.exports = (router) => {
     });
     
 
+ 
     return router;
-
 
 }
