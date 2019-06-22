@@ -1,0 +1,84 @@
+<p>
+  ADD CULTURE
+</p>
+
+
+
+
+
+<form #cu="ngForm" (ngSubmit)="RegisterCulture(cu.value)" class="form-contact">
+
+
+  <label for="name">Name</label>
+  <input [(ngModel)]="name" name="name" type="text" ngModel required>
+  <br />
+  <label for="name">description</label>
+  <input [(ngModel)]="description" name="description" type="text" ngModel required>
+  <br />
+
+  <label for="name">Territory</label>
+  <input [(ngModel)]="territory" name="territory" type="text" ngModel required>
+  <br />
+
+  <input type="submit" value="Register">
+</form>
+
+<input type="submit" (click)="GetCulture()" value="ver">
+
+
+<p>
+  ADD EXPRESSION
+</p>
+
+
+
+<form #ex="ngForm" (ngSubmit)="RegisterExpression(ex.value)" class="form-contact">
+
+
+  <label for="name">Name</label>
+  <input [(ngModel)]="names" name="names" type="text" ngModel required>
+  <br />
+  <label for="name">Description</label>
+  <input [(ngModel)]="description" name="description" type="text" ngModel required>
+  <br />
+  <label for="name">Link</label>
+  <input [(ngModel)]="Link" name="link" type="text" ngModel required>
+  <br />
+
+  <label for="name">Categorie</label>
+  <input [(ngModel)]="categorie" name="categorie" type="text" ngModel required>
+  <br />
+
+  <input type="submit" value="Register">
+</form>
+
+<input type="submit" (click)="GetExpression()" value="ver">
+
+
+<p>
+  ADD QUESTION
+</p>
+
+
+
+<form #ex="ngForm" (ngSubmit)="RegisterQuestion(ex.value)" class="form-contact">
+
+
+  <label for="name">ask</label>
+  <input [(ngModel)]="names" name="names" type="text" ngModel required>
+  <br />
+  <label for="name">Question</label>
+  <input [(ngModel)]="description" name="description" type="text" ngModel required>
+  <br />
+  <label for="name">Link</label>
+  <input [(ngModel)]="Link" name="link" type="text" ngModel required>
+  <br />
+
+  <label for="name">Categorie</label>
+  <input [(ngModel)]="categorie" name="categorie" type="text" ngModel required>
+  <br />
+
+  <input type="submit" value="Register">
+</form>
+
+<input type="submit" (click)="GetExpression()" value="ver">

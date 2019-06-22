@@ -1,10 +1,10 @@
-const Expression = require('../models/expressionModel'); // Import User Model Schema/const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
+const Storie = require('../models/storieModel'); // Import User Model Schema/const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
 const config = require('../config/database'); // Import database configuration
 //const hbs = require('nodemailer-express-handlebars');
 //const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const Culture = require('../models/cultureModel');
-const CultureExpression = require('../models/tables/culture-expressionModel');
+const CultureStorie = require('../models/tables/culture-storieModel');
 
 
 module.exports = (router) => {
@@ -13,44 +13,45 @@ module.exports = (router) => {
     /* ========
     Register ROUTE
     ======== */
-    router.post('/addExpression/:culture', (req, res) => {
+    router.post('/addStorie/:culture', (req, res) => {
 
-        if ((req.body.name || req.body.description || req.body.link || req.body.categorie || req.params.idCulture) === '') {
+        if ((req.body.name || req.body.description || req.body.type || req.body.categorie || req.params.culture) === '') {
             res.json({ success: false, message: "todos los datos deben estar completos" });
             console.log("no estan completos"); // Return error
         }
         else {
 
-            var expression = new Expression();
-            var ce = new CultureExpression();
+         var storie = new Storie();
+           var cs = new CultureStorie();
             req.param.id
-            expression.name = req.body.name;
-            expression.description = req.body.description;
-            expression.link = req.body.link;
-            expression.categorie = req.body.categorie;
+            storie.name = req.body.name;
+            storie.description = req.body.description;
+            storie.type = req.body.type;
+            storie.categorie = req.body.categorie;
 
-            expression.save(function (err, result) {
+            storie.save(function (err, result) {
                 if (err) {
                     res.json({ success: false, message: err }); // Return error
                     console.log("error registrando");
                 }
-                else {
-                        ce.expressions = result._id;
-                    ce.cultures = req.params.culture;
-                    ce.save(function (error) {
+                else {   
+    
+                cs.stories = result._id;
+                cs.cultures = req.params.culture;
+                cs.save(function (error) {
                         if (error) {
                             res.json({ success: false, message: error }); // Return error
                             console.log(" Error registrando tabla intermedia");
                         }
                         else {
-                            res.json({ success: true, message: "Registrado Exitosamente" }); // Return success and token to frontend
-                            console.log(" registrando en tabla intermedia");
+                            res.json({ success: true, message: "Registrado Exitosamente la historia" }); // Return success and token to frontend
+                            console.log(" registrando en tabla intermedia de historias");
                         }
 
-                    
-
                     });
-      
+                 
+
+
 
                 }
             });
@@ -65,8 +66,8 @@ module.exports = (router) => {
   edit ROUTE
   ======== */
 
-    router.put('/editExpression/:id', (req, res) => {
-        var expression = new Expression();
+    router.put('/editStorie/:id', (req, res) => {
+        var storie = new Storie();
 
         if ((req.params.id) == null) {
             //   res.status(422);
@@ -76,11 +77,11 @@ module.exports = (router) => {
 
             name: req.body.name,
             description: req.body.description,
-            link: req.body.link,
+            type: req.body.type,
             categorie: req.body.categorie,
 
         };
-        Expression.findByIdAndUpdate(req.params.id, { $set: ma }, { new: true }, (err, expression) => {
+        Storie.findByIdAndUpdate(req.params.id, { $set: ma }, { new: true }, (err, storie) => {
 
             if (err) {
                 res.json({ success: false, message: err }); // Return error
@@ -88,8 +89,8 @@ module.exports = (router) => {
             }
             else {
 
-                res.json({ success: true, expression }); // Return success and token to frontend
-                console.log("expressionssss" + expression);
+                res.json({ success: true, storie }); // Return success and token to frontend
+                console.log("storiessss" + storie);
             }
 
 

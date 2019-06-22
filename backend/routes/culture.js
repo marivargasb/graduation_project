@@ -12,8 +12,10 @@ module.exports = (router) => {
     Register ROUTE
     ======== */
     router.post('/addCulture', (req, res) => {
+  console.log("entro en cultura");
+    
 
-        if ((req.body.name || req.body.descripcion || req.body.territory) === '') {
+        if ((req.body.name || req.body.description || req.body.territory) === '') {
             res.json({ success: false, message: "todos los datos deben estar completos" });
             console.log("no estan completos"); // Return error
         }
@@ -22,7 +24,7 @@ module.exports = (router) => {
             var culture = new Culture();
             req.param.id
             culture.name = req.body.name;
-            culture.descripcion = req.body.descripcion;
+            culture.description = req.body.description;
             culture.territory = req.body.territory;
             console.log(req.body);
             culture.save(function (err) {
@@ -36,6 +38,8 @@ module.exports = (router) => {
                 }
             });
         }
+
+
     });
 
 
@@ -54,7 +58,7 @@ module.exports = (router) => {
         var ma = {
 
             name: req.body.name,
-            descripcion: req.body.descripcion,
+            description: req.body.description,
             territory: req.body.territory,
 
         };
@@ -82,6 +86,25 @@ module.exports = (router) => {
         }
 
         Culture.findOne({ _id: req.params.id.toLowerCase() }, (err, culture) => {
+
+            if (err) {
+                // res.status(422);
+                // res.json({success: false, message: 'no encontrado' } );
+                res.json({ success: false, message: err }); // Return error
+                console.log("error");
+            }
+
+            //res.json({ success: true, message: 'Success!'});
+            res.json({ success: true, culture }); // Return success and token to frontend
+            console.log(culture);
+
+        })
+
+    });
+
+    router.get('/fineCulture', (req, res) => {
+  
+        Culture.find({}, function (err, culture)  {
 
             if (err) {
                 // res.status(422);

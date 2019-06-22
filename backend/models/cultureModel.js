@@ -7,8 +7,9 @@ const bcrypt = require('bcrypt-nodejs');
 
 const culture = new Schema({
    name : { type: String , required:true },
-   descripcion: { type: String , required:true },
+   description: { type: String , required:true },
    territory: { type: String , required:true },
+
 
 });
 

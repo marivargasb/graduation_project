@@ -6,7 +6,7 @@ const cultures = mongoose.model('cultures');
 
 const expression = new Schema({
    name : { type: String , required:true },
-   descripcion: { type: String , required:true },
+   description: { type: String , required:true },
    link: { type: String , required:true },
    categorie: { type: String , required:true }
 
