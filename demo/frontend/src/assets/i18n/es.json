@@ -1,0 +1,58 @@
+{
+    "header": {
+        "inicio": "INICIO",
+        "culturas": "CULTURAS",
+        "mapa": "MAPA",
+        "historias": "HISTORIAS",
+        "expreciones": "EXPRECIONES CULTURALES",
+        "idioma": "IDIOMA",
+        "espanol": "EspaÃ±ol",
+        "ingles": "Ingles"
+    },
+    "banner": {
+        "title": "MUJERES INDIGENAS DE COSTA RICA",
+        "sub": "fuerza y espiritu"
+    },
+    "exprecion": {
+        "leer-mas": "Leer mas",
+        "buscar": "Teclea y pulsa enter",
+        "categorias": "CATEGORIAS"
+    },
+    "stories": {
+        "categorias": "CATEGORIAS",
+        "categoria": {
+            "cuentos": "Cuentos",
+            "susurros": "Susurros",
+            "canciones": "canciones",
+            "cultura": "cultura"
+        }},
+        "expreciones": {
+            "preguntas": "Preguntas",
+            "descripcion": "Descripcion",
+            "comentarios": "Comentarios",
+            "comenta": {
+                "titulo": "Deja tu Comentario",
+                "mensaje": "Comentario",
+                "enviar": "enviar comentario"
+            }
+        },
+        "footer": {
+            "descripcion": "Comunidad de mujeres de diferentes grupos indigenas de Costa Rica",
+            "columna1": {
+                "title": "MENU",
+                "text1": "Inicio",
+                "text2": "Sobre nosotros",
+                "text3": "Expreciones culturales",
+                "text4": "Historias",
+                "text5": "Mapa"
+            },
+            "columna2": {
+                "title": "AYUDA",
+                "text1": "Terminos y Condiciones",
+                "text2": "Politica de privacidad",
+                "text3": "Contacto",
+                "text4": "Iniciar sesión"
+            },
+            "columna3": "TIENE PREGUNTAS"
+        }
+    }

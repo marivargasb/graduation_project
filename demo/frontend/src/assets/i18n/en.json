@@ -1,0 +1,59 @@
+{
+    "header": {
+        "inicio": "HOME",
+        "culturas": "CULTURES",
+        "mapa": "MAP",
+        "historias": "STORIES",
+        "expreciones": "CULTURAL EXPRESSIONS",
+        "idioma": "Language",
+        "espanol": "Spanish",
+        "ingles": "English"
+    },
+    "banner": {
+        "title": "INDIGENOUS WOMEN OF COSTA RICA",
+        "sub": "strength and spirit"
+    },
+    "exprecion": {
+        "leer-mas": "Read more",
+        "buscar": "TYPE A KEYWORD AND HIT ENTER",
+        "categorias": "CATEGORIES"
+    },
+    "stories": {
+        "categorias": "CATEGORIES",
+        "categoria": {
+            "cuentos": "stories",
+            "susurros": "Whispers",
+            "canciones": "song",
+            "cultura": "culture"
+        }
+    },
+    "expreciones": {
+        "preguntas": "Questions",
+        "descripcion": "Description",
+        "comentarios": "Comments",
+        "comenta": {
+            "titulo": "Leave your comment",
+            "mensaje": "Comment",
+            "enviar": "Send Comment"
+        }
+    },
+    "footer": {
+        "descripcion": "Community of women from different indigenous groups of Costa Rica",
+        "columna1": {
+            "title": "MENU",
+            "text1": "Home",
+            "text2": "About",
+            "text3": "Cultural Expressions",
+            "text4": "Stories",
+            "text5": "Map"
+        },
+        "columna2": {
+            "title": "HELP",
+            "text1": "Terms and Conditions",
+            "text2": "Privacy Policy",
+            "text3": "Contact",
+            "text4": "Login"
+        },
+        "columna3": "HAVE A QUESTIONS"
+    }
+}
